@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <script type="text/javascript">
+
+        /*
+
+        ///////////Q1
+
+        //1
+
+        function getValue(){
+            let value = 0;
+            setTimeout(function(){value = 10;console.log(value)},1000);
+            return value;
+        }
+
+        console.log(getValue());
+
+        //2
+
+        function getValue2(callback){
+            let value = 0;
+            setTimeout(function(){value = 20;callback(value)},2000);
+            return value;
+        }
+
+        console.log(getValue2(function (nValue){
+            console.log("Callback Function " + nValue);
+        }));
+
+        //3 and //4
+
+        function getValue3(){
+            let value = 0;
+
+            return new Promise(function (resolve, reject){
+                setTimeout(function (){
+                    value = 30;
+                    resolve(value);
+
+                },3000);
+            });
+        }
+
+        getValue3().then(function(value){
+            console.log(value);
+            return value + 100;
+        }).then(function(value){
+            console.log(value);
+            return value + 100;
+        }).then(function(value){
+            console.log(value);
+            return value + 100;
+        })
+
+        console.log("hello");
+
+        ///////////Q2
+
+        function Vehicle(type){
+            this.type = type;
+            Vehicle.vehicleCount++;
+        }
+
+        Vehicle.prototype.print = function(){
+            console.log(this.type + " Vehicle is driving");
+        }
+
+        Vehicle.vehicleCount = 0;
+
+        const vehicle = new Vehicle("Suzuki");
+        console.log(Vehicle.vehicleCount);
+        vehicle.print();
+
+        function Car(type){
+            Vehicle.call(this,type);
+        }
+
+        Car.prototype = Object.create(Vehicle.prototype);
+        Car.prototype.constructor = Car;
+
+        Car.prototype.balanceWheels = function(){
+            console.log("Wheels are balanced");
+        }
+
+        const car = new Car("Toyota");
+
+        car.print();
+        car.balanceWheels();
+
+        console.log(car.type,Vehicle.vehicleCount);
+        */
+
+
+        /*
+        //Arrow
+
+        let displayName = function(name){
+            console.log("hello" + name);
+        }
+
+        displayName("SLIIT");
+
+        let printName = name =>{
+            console.log("Hello" +name+"function");
+        }
+
+        printName("SLIIT");
+
+        /////////
+
+        window.name = "John";
+
+        let person = {
+            name: "Jane",
+            age: 22,
+
+            printName(){
+                console.log("Regular funtion "+this.name);
+            },
+
+            displayName:()=> {
+                console.log("arrow funtion "+this.name);
+            },
+
+            parent:{
+                name:"Carrol",
+                printParent:()=> {
+                    console.log(this.name);
+                }
+            }
+        }
+
+        person.displayName();
+        person.printName();
+        person.parent.printParent();
+
+         */
+
+        //Q4
+
+        /*
+
+        function getValue3(){
+            let value = 0;
+
+            return new Promise(function (resolve, reject){
+                setTimeout(function (){
+                    value = 30;
+                    resolve(value);
+
+                },1000);
+            });
+        }
+
+        async function print(){
+            let value = await getValue3();
+            value = value + 100;
+            value = value + 100;
+            value = value + 100;
+            console.log(value);
+        }
+
+        print()
+
+         */
+
+        ///////Q5
+
+        /*
+
+        class Vehicle {
+            static VehicleCount = 0;
+            constructor(type) {
+                this.type = type;
+                Vehicle.VehicleCount++;
+            }
+            drive(){
+                console.log(this.type + " is driving");
+            }
+        }
+
+        let vehicle = new Vehicle("Toyota");
+
+        vehicle.drive();
+        console.log(Vehicle.VehicleCount);
+
+        class Car extends Vehicle{
+            constructor(type) {
+                super(type);
+            }
+
+            wheelBalance(){
+                console.log("Wheels are balanced in " + this.type);
+            }
+        }
+
+        let car = new Car("Nissan");
+
+        car.drive();
+        car.wheelBalance();
+        console.log(Vehicle.VehicleCount);
+
+         */
+
+        //Getters and Setters
+
+        class Sqare{
+            constructor(width) {
+                this.width = width;
+                this.hight = width;
+            }
+
+            get area(){
+                return this.hight * this.width;
+            }
+
+            set area(area){
+                this.width = Math.sqrt(area);
+                this.hight = Math.sqrt(area);
+            }
+        }
+
+        let sqare1 = new Sqare(5);
+
+        console.log(sqare1.area);
+
+        sqare1.area = 64;
+        console.log(sqare1.width);
+
+    </script>
+
+</body>
+</html>
