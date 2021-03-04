@@ -1,0 +1,45 @@
+db.getCollection("Student").find({})
+
+db.Student.insertOne({ 'name': 'John', 'dateOfBirth': '1990-01-01T00:00:00Z',
+                     'subjects': ['Application frameworks', 'Computer architecture']
+                       });
+
+db.getCollection("Student").find({name: 'John'});
+db.getCollection("Student").find({_id: { $in: [ObjectId('603f20b3a3f314153dc2d102') ] }});
+
+db.Student.update(
+   { name: 'John' },
+   {
+     $set: {
+       "subjects.2": 'Distributed Systems'
+     }
+   }
+)
+
+db.Student.insertMany([
+   
+   { "name": "Smith", "dateOfBirth": "1990-01-15T00:00:00Z", "subjects": ["Application frameworks", "Computer architecture"], "isActive": true },
+   { "name": "Jane", "dateOfBirth": "1990-02-15T00:00:00Z", "subjects": ["Application frameworks", "Computer architecture"], "isActive": false}
+]);
+
+db.getCollection("Student").find({name: 'Smith','isActive':true});
+
+db.Student.update(
+   { name: 'Smith' },
+   {
+     $set: {
+       "subjects.2": 'Distributed Systems'
+     }
+   }
+)
+
+db.Student.update(
+   { name: 'Smith' },
+   {
+     $set: {
+       "isActive": false
+     }
+   }
+)
+
+db.Student.remove({'name':'John'});
